@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+php artisan test --parallel
+
+if [$? -ne 0]; then
+   echo "Opaa.. deu ruim nos testes";
+   exit 1;
+fi;
