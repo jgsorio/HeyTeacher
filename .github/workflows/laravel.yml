@@ -18,7 +18,6 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer update
-           npm run build
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
@@ -27,10 +26,17 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PEST
+
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+    - name: Installing Package.json
+      run: npm install
+
+    - name: Build Assets
+      run: npm run build
+
+    - name: Execute tests (Unit and Feature tests) via PEST
       run: php ./vendor/bin/pest --parallel
 
     - name: "Execute Larastan"
