@@ -1,12 +1,15 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import Plugin from 'flowbite/plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'media',
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './node_modules/flowbite/**/*.js'
     ],
 
     theme: {
@@ -17,5 +20,8 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        Plugin
+    ],
 };
