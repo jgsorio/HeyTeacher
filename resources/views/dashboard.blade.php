@@ -20,6 +20,13 @@
                 <x-button type="submit" label="Send Message"></x-button>
                 <x-button type="reset" label="Cancel" class="dark:bg-red-900 hover:dark:bg-red-700"></x-button>
             </x-form>
+            <hr class="w-full mt-5 text-white" />
+            <div class="w-full mt-5 flex flex-col">
+                <h2 class="text-white font-medium text-xl">List of Questions</h2>
+                @foreach ($questions as $question)
+                  <x-question question="{{ $question->question }}"/>
+                @endforeach
+            </div>
         </div>
     </div>
 </x-app-layout>
