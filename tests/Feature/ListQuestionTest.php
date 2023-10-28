@@ -6,7 +6,9 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
 it('should list all the questions', function () {
-    $questions = Question::factory(10)->create();
+    $questions = Question::factory(2)->create([
+        'question' => fake()->sentence(50)
+    ]);
     $user = User::factory()->create();
     actingAs($user);
 
