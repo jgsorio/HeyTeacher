@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\RedirectResponse;
 use Closure;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
     public function store(): RedirectResponse
     {
-        Question::create(request()->validate([
+        Question::query()->create(request()->validate([
             'question' => [
                 'required',
                 'min:10',
@@ -22,5 +23,11 @@ class QuestionController extends Controller
             ]
         ]));
         return redirect()->route('dashboard');
+    }
+
+    public function like(Question $question): RedirectResponse
+    {
+        auth()->user()->like($question);
+        return back();
     }
 }
