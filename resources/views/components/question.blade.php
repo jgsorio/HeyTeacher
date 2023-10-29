@@ -15,6 +15,10 @@
                  <x-icons.thumbs-up class="text-green-900 hover:text-green-300 cursor-pointer flex" likes="{{ $likes }}" dislikes="{{ $dislikes }}"/>
              </button>
         </x-form>
-        <x-icons.thumbs-down class="text-red-900 hover:text-red-300 cursor-pointer flex"/>
+        <x-form action="{{ route('question.dislike', $id) }}">
+            <button>
+                <x-icons.thumbs-down class="text-red-900 hover:text-red-300 cursor-pointer flex" likes="{{ $likes }}" dislikes="{{ $dislikes }}"/>
+            </button>
+        </x-form>
     </span>
 </div>
