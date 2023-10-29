@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\RedirectResponse;
 use Closure;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -27,7 +26,7 @@ class QuestionController extends Controller
 
     public function like(Question $question): RedirectResponse
     {
-        auth()->user()->like($question);
+        user()->like($question);
         return back();
     }
 }

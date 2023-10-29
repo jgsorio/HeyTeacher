@@ -2,7 +2,6 @@
 
 use App\Models\Question;
 use App\Models\User;
-use App\Models\Vote;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
@@ -32,5 +31,5 @@ it('should not be able to like more than 1 time', function () {
     post(route('question.like', $question));
     post(route('question.like', $question));
 
-    expect($user->likes()->where('question_id', '=', $question->id)->get())->toHaveCount(1);
+    expect(user()->likes()->where('question_id', '=', $question->id)->get())->toHaveCount(1);
 });
