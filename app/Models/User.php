@@ -44,20 +44,33 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function likes(): HasMany
+    public function votes(): HasMany
     {
         return $this->hasMany(Vote::class);
     }
 
     public function like(Question $question): void
     {
-        $this->likes()->updateOrCreate(
+        $this->votes()->updateOrCreate(
+            [
+                'question_id' => $question->id,
+            ],
+            [
+                'likes' => $question->votes()->sum('likes') + 1,
+                'dislikes' => $question->votes()->sum('dislikes')
+            ]
+        );
+    }
+
+    public function dislike(Question $question): void
+    {
+        $this->votes()->updateOrCreate(
             [
                 'question_id' => $question->id
             ],
             [
-                'likes' => 1,
-                'dislikes' => 0
+                'likes' =>$question->votes()->sum('likes'),
+                'dislikes' => $question->votes()->sum('dislikes') + 1
             ]
         );
     }

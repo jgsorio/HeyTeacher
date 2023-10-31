@@ -29,4 +29,10 @@ class QuestionController extends Controller
         user()->like($question);
         return back();
     }
+
+    public function dislike(Question $question): RedirectResponse
+    {
+        user()->dislike($question);
+        return back();
+    }
 }
