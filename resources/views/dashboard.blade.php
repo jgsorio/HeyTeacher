@@ -24,7 +24,7 @@
             <div class="w-full mt-5 flex flex-col">
                 <h2 class="text-white font-medium text-xl">List of Questions</h2>
                 @foreach ($questions as $question)
-                  <x-question id="{{ $question->id }}" question="{{ $question->question }}" likes="{{ $question->likes }}" dislikes="{{ $question->dislikes }}"/>
+                  <x-question id="{{ $question->id }}" question="{{ $question->question }}" likes="{{ $question->votes_sum_likes }}" dislikes="{{ $question->votes_sum_dislikes }}"/>
                 @endforeach
             </div>
         </div>
